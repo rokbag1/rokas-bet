@@ -30,9 +30,8 @@ app.use(cors({
 JWT tokens are currently stored in localStorage. Since the backend does not provide a refresh token, using localStorage or an HTTP-only cookie does not add extra security — the token is still accessible client-side.
 
 ## About project
-Light - Dark mode is installed
-Language support added, but we have some missing translations
-We using Auth and UI Contexts to controll all site
-Design is not polish
-I dont write my comments in Lithuanian, and I almost never write comments, these comments are added because I want to understand the guys who checks the project why I did some of the things :) 
-Good luck to you guys
+Light - Dark mode is installed.
+Language support added, but I have some missing translations
+.I am using Auth and UI Contexts to controll all site
+.I dont write my comments in Lithuanian, and I almost never write comments, these comments are added because I want to understand the guys who checks the project why I did some of the things :) 
+.Good luck to you guys
