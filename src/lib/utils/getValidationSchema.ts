@@ -2,7 +2,6 @@ import {
   EValidation,
   PASSWORD_VALIDATION_REGEX,
 } from "@lib/constants/validations";
-import { useTranslation } from "react-i18next";
 import { type AnySchema, ref, string, object } from "yup";
 
 export const getValidationSchema = <T extends object>(

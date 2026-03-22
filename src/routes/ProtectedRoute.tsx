@@ -2,6 +2,7 @@ import { EModalView } from "@lib/constants/ui";
 import { useAuth } from "@lib/context/AuthContext";
 import { useUI } from "@lib/context/UiContext";
 import { useEffect, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 interface ProtectedRoute {
@@ -10,13 +11,14 @@ interface ProtectedRoute {
 
 export default function ProtectedRoute({ children }: ProtectedRoute) {
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
   const { user, accessToken } = useAuth();
   const { openModal, setModalView } = useUI();
   const isAuth = !!accessToken && !!user?.id;
 
   useEffect(() => {
     if (!isAuth) {
-      navigate("/", { replace: true });
+      navigate(`/${i18n.language}`, { replace: true });
       setModalView(EModalView.Login);
       openModal();
     }
