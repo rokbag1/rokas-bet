@@ -44,7 +44,7 @@ export default function MainDashboardPage() {
             variant="secondary"
             onClick={() =>
               openPlaceModal(
-                t("Kombinuotui statytmui, geras variantas"),
+                t("Kombinuotui statymui, geras variantas"),
                 "/images/nba.gif",
               )
             }

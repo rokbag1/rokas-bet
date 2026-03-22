@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useUI } from "@lib/context/UiContext";
 import { EModalView } from "@lib/constants/ui";
 import { useTranslation } from "react-i18next";
+import i18n from "@lib/i18n";
 
 interface SignupForm {
   name: string;
@@ -43,8 +44,8 @@ export const useSignup = () => {
         });
 
         closeModal();
-
-        navigate("/dashboard");
+        navigate(`/${i18n.language}/dashboard`, { replace: true });
+     
       } catch (error) {
         //Nepriloginom dabar nes kazkas crashino, pabandom dar per modala
         setModalView(EModalView.Login);
