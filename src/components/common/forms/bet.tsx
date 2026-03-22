@@ -22,6 +22,7 @@ interface PlaceBetResponse {
 
 export default function PlaceBet({ title, image }: PlaceBetProps) {
   const { t } = useTranslation("common");
+  const [loading, setLoading] = useState(false);
   const { accessToken, updateBalance, user } = useAuth();
   const [amount, setAmount] = useState<number>(0);
   const [newImage, setNewImage] = useState<string>(image ?? "");
@@ -45,6 +46,10 @@ export default function PlaceBet({ title, image }: PlaceBetProps) {
 
   const handleSubmit = async (amount: number) => {
     try {
+      if (loading) return;
+
+      //Siek tiek basic paprasta apsauga kad neprispamintu bets
+      setLoading(true);
       //Teoriskai galima butu ir nedaryti request jei ammount > balance, bet backend yra source of true
       const res = await fetch(`${BACKEND_URL}/bet`, {
         method: "POST",
@@ -78,8 +83,12 @@ export default function PlaceBet({ title, image }: PlaceBetProps) {
       );
       setNewImage(data.winAmount ? "/images/bravo.gif" : (image ?? ""));
       updateBalance(data.balance);
-    } catch (error) {}
-    setAmount(0);
+    } catch (error) {
+      setError(t('Fatal error'));
+    } finally {
+      setLoading(false);
+      setAmount(0);
+    }
   };
 
   return (
