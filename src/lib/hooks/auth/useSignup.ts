@@ -27,7 +27,7 @@ export const useSignup = () => {
     confirmPassword: "",
   };
 
-  const validationSchema = getValidationSchema(initialValues);
+  const validationSchema = getValidationSchema(initialValues, t);
 
   const onSubmit = async (values: SignupForm) => {
     setSignupError(null);

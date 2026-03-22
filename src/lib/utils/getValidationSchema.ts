@@ -7,9 +7,9 @@ import { type AnySchema, ref, string, object } from "yup";
 
 export const getValidationSchema = <T extends object>(
   initialValues: T,
+  t: any,
   returnYupObject = true,
 ) => {
-  const { t } = useTranslation("common");
   const schema: Record<string, AnySchema> = {};
   const validators: Record<string, AnySchema> = {
     name: string()

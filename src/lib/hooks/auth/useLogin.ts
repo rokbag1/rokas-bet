@@ -5,6 +5,7 @@ import { useAuth } from "@lib/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useUI } from "@lib/context/UiContext";
 import { linkWithLang } from "@lib/utils/helpers";
+import { useTranslation } from "react-i18next";
 
 interface LoginForm {
   email: string;
@@ -16,12 +17,13 @@ export const useLogin = () => {
   const navigate = useNavigate();
   const { closeModal } = useUI();
   const { login } = useAuth();
+  const { t } = useTranslation("common");
   const initialValues: LoginForm = {
     email: "",
     password: "",
   };
 
-  const validationSchema = getValidationSchema(initialValues);
+  const validationSchema = getValidationSchema(initialValues, t);
 
   const onSubmit = async (values: LoginForm) => {
     try {
